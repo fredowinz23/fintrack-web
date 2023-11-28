@@ -4,7 +4,7 @@ include $ROOT_DIR . "templates/header.php";
 
 
 $userId = $_SESSION["user_session"]["Id"];
-$account_list = account()->list("createdById=$userId or createdById=0");
+$account_list = category()->list("type='Account' and (createdById=$userId or createdById=0)");
 
 ?>
 

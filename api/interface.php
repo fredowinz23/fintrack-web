@@ -1,10 +1,59 @@
 <?php
+function get_analysis_amount($categoryId, $userId){
+  $result = 0;
+  foreach (record()->list("categoryId=$categoryId and userId=$userId") as $row) {
+    $result += $row->amount;
+  }
+  return $result;
+}
+
+function get_analysis_by_account_amount($accountId, $userId){
+  $result = 0;
+  foreach (record()->list("accountId=$accountId and userId=$userId") as $row) {
+    $result += $row->amount;
+  }
+  return $result;
+}
+
 function get_total_amount($accountId, $userId, $type){
   $result = 0;
   foreach (record()->list("accountId=$accountId and userId=$userId and type='$type'") as $row) {
     $result += $row->amount;
   }
   return $result;
+}
+
+function forcasted_amount($userId){
+  $expense_list = record()->list("userId=$userId and type='Expense'");
+
+  $totalExpense = 0;
+  foreach ($expense_list as $row) {
+    $totalExpense += $row->amount;
+  }
+
+  $forcastedAmount = 0;
+
+  $today = date("Y-m-d");
+  $totalExpenseUntilYesterday = 0;
+  foreach (record()->list("userId=$userId and type='Expense' and dateAdded<'$today'") as $row) {
+    $totalExpenseUntilYesterday += $row->amount;
+  }
+
+
+  if ($expense_list) {
+    $startTimeStamp = strtotime($expense_list[0]->dateAdded);
+    $endTimeStamp = strtotime(date('Y-m-d',strtotime("-1 days")));
+    $timeDiff = abs($endTimeStamp - $startTimeStamp);
+    if ($timeDiff>0) {
+      $numberDays = $timeDiff/86400;  // 86400 seconds in one day
+      // and you might want to convert to integer
+      $numberDays = intval($numberDays);
+      $forcastedAmount = $totalExpenseUntilYesterday/$numberDays;
+      $fiftyPercent = $forcastedAmount/2;
+    }
+  }
+
+  return $forcastedAmount;
 }
 
 
@@ -46,8 +95,8 @@ function account_interface($row){
 
 function record_interface($row){
 
-  $account = account()->get("Id=$row->accountId");
-  $accountObj = account_interface($account);
+  $account = category()->get("Id=$row->accountId");
+  $accountObj = category_interface($account);
 
   $category = category()->get("Id=$row->categoryId");
   $categoryObj = category_interface($category);

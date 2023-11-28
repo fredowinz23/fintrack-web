@@ -49,9 +49,6 @@ $user = $_SESSION["user_session"];
                 </li>
 	            </ul>
 	          </li>
-	          <li>
-              <a href="account-types.php">Accounts</a>
-	          </li>
             <li>
 	            <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Category</a>
 	            <ul class="collapse list-unstyled" id="homeSubmenu2">
@@ -60,6 +57,9 @@ $user = $_SESSION["user_session"];
                 </li>
                 <li>
                     <a href="category.php?type=Income">Income Category</a>
+                </li>
+                <li>
+                    <a href="category.php?type=Account">Account Category</a>
                 </li>
 	            </ul>
 	          </li>

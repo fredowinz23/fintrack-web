@@ -9,7 +9,7 @@
 
   $date = get_query_string("date", date("Y-m-d"));
   $record_list = record()->list("dateAdded='$date'");
-  
+
 
   function get_total_amount($accountId, $type){
     $result = 0;
@@ -45,7 +45,7 @@
         $totalAmount = 0;
        foreach ($record_list as $row):
          $count += 1;
-         $account = account()->get("Id=$row->accountId");
+         $account = category()->get("Id=$row->accountId");
          $category = category()->get("Id=$row->categoryId");
          if ($row->type=="Income") {
            $totalAmount += $row->amount;
