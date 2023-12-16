@@ -49,7 +49,7 @@ $balance = $totalIncome-$totalExpense;
 
   if ($expense_list) {
     $startTimeStamp = strtotime($expense_list[0]->dateAdded);
-    $endTimeStamp = strtotime(date('Y-m-d',strtotime("-1 days")));
+    $endTimeStamp = strtotime(date('Y-m-d'));
     $timeDiff = abs($endTimeStamp - $startTimeStamp);
     if ($timeDiff>0) {
       $numberDays = $timeDiff/86400;  // 86400 seconds in one day

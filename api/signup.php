@@ -19,7 +19,7 @@ if (isset($_POST["username"])) {
     $model->obj["firstName"] = $_POST["firstName"];
     $model->obj["lastName"] = $_POST["lastName"];
     $model->obj["phone"] = $_POST["phone"];
-    $model->obj["password"] = $_POST["password"];
+    $model->obj["password"] = md5($_POST["password"]);
     $model->obj["dateAdded"] = "NOW()";
     $model->create();
 

@@ -6,7 +6,7 @@ $success = false;
 $response = "";
 if (isset($_POST["username"])) {
   $username = $_POST["username"];
-  $password = $_POST["password"];
+  $password = md5($_POST["password"]);
   $checkUserExist = user()->count("username='$username' and password='$password'");
   if ($checkUserExist > 0) {
     $user = user()->get("username='$username'");

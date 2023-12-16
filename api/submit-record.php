@@ -11,6 +11,7 @@ $user = user()->get("username='$username'");
 
 $model = record();
 $model->obj["amount"] = $_POST["amount"];
+$model->obj["notes"] = $_POST["notes"];
 $model->obj["accountId"] = $_POST["accountId"];
 $model->obj["categoryId"] = $_POST["categoryId"];
 $model->obj["type"] = $_POST["type"];

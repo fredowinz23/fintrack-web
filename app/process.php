@@ -104,6 +104,7 @@ function record_add(){
 	$model->obj["amount"] = $_POST["amount"];
 	$model->obj["accountId"] = $_POST["accountId"];
 	$model->obj["categoryId"] = $_POST["categoryId"];
+	$model->obj["notes"] = $_POST["notes"];
 	$model->obj["type"] = $_POST["type"];
 	$model->obj["dateAdded"] = "NOW()";
 	$model->obj["userId"] = $_SESSION["user_session"]["Id"];
@@ -118,7 +119,7 @@ function record_add(){
 	}
 
 	// print_r($_POST);
-	header('Location: index.php?success=' . $successMessage);
+	header('Location: index2.php?success=' . $successMessage);
 }
 
 
@@ -129,6 +130,7 @@ function transfer_fund(){
 	$model->obj["amount"] = $_POST["amount"];
 	$model->obj["accountId"] = $_POST["accountFrom"];
 	$model->obj["categoryId"] = $_POST["categoryId"];
+	$model->obj["notes"] = $_POST["notes"];
 	$model->obj["type"] = "Expense";
 	$model->obj["dateAdded"] = "NOW()";
 	$model->obj["userId"] = $_SESSION["user_session"]["Id"];
@@ -142,5 +144,5 @@ function transfer_fund(){
 	$model->obj["dateAdded"] = "NOW()";
 	$model->obj["userId"] = $_SESSION["user_session"]["Id"];
 	$model->create();
-	header('Location: index.php?success=Successfully created a new record');
+	header('Location: index2.php?success=Successfully created a new record');
 }

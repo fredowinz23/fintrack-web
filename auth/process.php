@@ -15,10 +15,6 @@ switch ($action) {
 		user_logout();
 		break;
 
-	case 'change-password' :
-		change_password();
-		break;
-
 	case 'register-step-1' :
 		register_step_1();
 		break;
@@ -32,7 +28,7 @@ switch ($action) {
 
 function user_login(){
 		$username = $_POST["username"];
-		$password = $_POST["password"];
+		$password = md5($_POST["password"]);
 
 		$countUser = user()->count("username='$username' and password='$password'");
 		if ($countUser==0):
@@ -72,7 +68,7 @@ function register_step_2()
 	//date in mm/dd/yyyy format; or it can be in other formats as well
 		$model = user();
 		$model->obj["username"] = $_SESSION["userForm"]["username"];
-		$model->obj["password"] = $_SESSION["userForm"]["password"];
+		$model->obj["password"] = md5($_SESSION["userForm"]["password"]);
 		$model->obj["firstName"] = $_POST["firstName"];
 		$model->obj["lastName"] = $_POST["lastName"];
 		$model->obj["dateAdded"] = "NOW()";

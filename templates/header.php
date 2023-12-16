@@ -39,13 +39,28 @@ $user = $_SESSION["user_session"];
 	            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Analysis</a>
 	            <ul class="collapse list-unstyled" id="homeSubmenu">
                 <li>
-                    <a href="expense-overview.php">Expense overview</a>
+                    <a href="overview.php?type=Expense">Expense overview</a>
                 </li>
                 <li>
-                    <a href="income-overview.php">Income Overview</a>
+                    <a href="overview.php?type=Income">Income Overview</a>
                 </li>
                 <li>
-                    <a href="#">Account Overview</a>
+                    <a href="overview.php?type=Account">Account Overview</a>
+                </li>
+	            </ul>
+	          </li>
+
+            <li>
+	            <a href="#homeSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Graph</a>
+	            <ul class="collapse list-unstyled" id="homeSubmenu3">
+                <li>
+                    <a href="graph.php?type=Expense">Expense Graph</a>
+                </li>
+                <li>
+                    <a href="graph.php?type=Income">Income Graph</a>
+                </li>
+                <li>
+                    <a href="graph.php?type=Account">Account Graph</a>
                 </li>
 	            </ul>
 	          </li>
@@ -94,7 +109,7 @@ $user = $_SESSION["user_session"];
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><?=$user["firstName"]?> <?=$user["lastName"]?></a>
+                    <a class="nav-link" href="#"><?=$user["username"]?></a>
                 </li>
               </ul>
             </div>

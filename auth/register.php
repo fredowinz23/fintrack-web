@@ -33,10 +33,19 @@ var reg_password = document.getElementById("reg_password1")
   , reg_confirm_password = document.getElementById("reg_password2");
 
 function validatePassword(){
-  if(reg_password.value != reg_confirm_password.value) {
-    reg_confirm_password.setCustomValidity("Passwords Don't Match");
-  } else {
-    reg_confirm_password.setCustomValidity('');
+  if (reg_password.value.length<6) {
+      reg_password.setCustomValidity("Password must be 6 digits or more");
+  }
+  else if (reg_confirm_password.value.length<6){
+      reg_password.setCustomValidity('');
+      reg_confirm_password.setCustomValidity("Password must be 6 digits or more");
+  }
+  else{
+    if(reg_password.value != reg_confirm_password.value) {
+      reg_confirm_password.setCustomValidity("Passwords Don't Match");
+    } else {
+      reg_confirm_password.setCustomValidity('');
+    }
   }
 }
 
